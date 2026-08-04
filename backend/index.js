@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import errorHandler from "./middleware/errorHandler.js";
 import authRoutes from "./routes/authRoutes.js";
-import authMiddleware from "./middleware/authMiddleware.js";
+import playlistRoutes from "./routes/playlistRoutes.js";
 
 
 dotenv.config();
@@ -19,17 +19,11 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/playlists", playlistRoutes);
 
 app.get("/", (req, res) => {
   res.json({
     message: "PlaylistHub API is running!",
-  });
-});
-
-app.get("/api/protected", authMiddleware, (req, res) => {
-  res.json({
-    message: "Protected route accessed successfully.",
-    user: req.user,
   });
 });
 
