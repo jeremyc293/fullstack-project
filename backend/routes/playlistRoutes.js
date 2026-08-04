@@ -64,4 +64,39 @@ router.get("/:id", authMiddleware, async (req, res, next) => {
   }
 });
 
+// Update Playlist
+router.put("/:id", authMiddleware, async (req, res, next) => {
+  try {
+    const { name, description } = req.body;
+
+    const playlist = await Playlist.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        user: req.user.id,
+      },
+      {
+        name,
+        description,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!playlist) {
+      return res.status(404).json({
+        message: "Playlist not found.",
+      });
+    }
+
+    res.status(200).json({
+      message: "Playlist updated successfully.",
+      playlist,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;
