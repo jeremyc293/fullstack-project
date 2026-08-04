@@ -44,4 +44,24 @@ router.get("/", authMiddleware, async (req, res, next) => {
   }
 });
 
+// Get One Playlist
+router.get("/:id", authMiddleware, async (req, res, next) => {
+  try {
+    const playlist = await Playlist.findOne({
+      _id: req.params.id,
+      user: req.user.id,
+    });
+
+    if (!playlist) {
+      return res.status(404).json({
+        message: "Playlist not found.",
+      });
+    }
+
+    res.status(200).json(playlist);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;
