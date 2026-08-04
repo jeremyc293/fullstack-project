@@ -31,4 +31,17 @@ router.post("/", authMiddleware, async (req, res, next) => {
   }
 });
 
+// Get All Playlists
+router.get("/", authMiddleware, async (req, res, next) => {
+  try {
+    const playlists = await Playlist.find({
+      user: req.user.id,
+    }).sort({ createdAt: -1 });
+
+    res.status(200).json(playlists);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;
