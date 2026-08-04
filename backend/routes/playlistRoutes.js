@@ -99,4 +99,26 @@ router.put("/:id", authMiddleware, async (req, res, next) => {
   }
 });
 
+// Delete Playlist
+router.delete("/:id", authMiddleware, async (req, res, next) => {
+  try {
+    const playlist = await Playlist.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user.id,
+    });
+
+    if (!playlist) {
+      return res.status(404).json({
+        message: "Playlist not found.",
+      });
+    }
+
+    res.status(200).json({
+      message: "Playlist deleted successfully.",
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;
