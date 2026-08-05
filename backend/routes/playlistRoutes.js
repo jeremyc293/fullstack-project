@@ -121,4 +121,31 @@ router.delete("/:id", authMiddleware, async (req, res, next) => {
   }
 });
 
+// Add Song to Playlist
+router.post("/:id/songs", authMiddleware, async (req, res, next) => {
+  try {
+    const playlist = await Playlist.findOne({
+      _id: req.params.id,
+      user: req.user.id,
+    });
+
+    if (!playlist) {
+      return res.status(404).json({
+        message: "Playlist not found.",
+      });
+    }
+
+    playlist.songs.push(req.body);
+
+    await playlist.save();
+
+    res.status(200).json({
+      message: "Song added successfully.",
+      playlist,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;

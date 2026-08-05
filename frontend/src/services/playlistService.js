@@ -44,3 +44,18 @@ export async function getPlaylistById(id) {
 
   return response.json();
 }
+
+export async function addSongToPlaylist(playlistId, song) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`${BASE_URL}/${playlistId}/songs`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(song),
+  });
+
+  return response.json();
+}
