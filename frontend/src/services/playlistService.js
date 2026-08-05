@@ -17,3 +17,18 @@ export async function getPlaylists() {
 
   return response.json();
 }
+
+export async function createPlaylist(playlist) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(BASE_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(playlist),
+  });
+
+  return response.json();
+}
