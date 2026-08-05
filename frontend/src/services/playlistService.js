@@ -32,3 +32,15 @@ export async function createPlaylist(playlist) {
 
   return response.json();
 }
+
+export async function getPlaylistById(id) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.json();
+}
