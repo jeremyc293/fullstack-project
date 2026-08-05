@@ -43,3 +43,13 @@ nav a:hover {
 main {
   padding: 24px;
 }
+
+img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+main > div > div {
+  margin-top: 20px;
+}
