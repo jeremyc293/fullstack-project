@@ -1,13 +1,45 @@
-*{
+* {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
 }
 
 button,
 input {
   font: inherit;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #222;
+  color: white;
+}
+
+nav h2 {
+  margin: 0;
+}
+
+nav div {
+  display: flex;
+  gap: 16px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 24px;
 }
