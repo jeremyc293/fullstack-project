@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  deletePlaylist,
-  getPlaylistById,
-  removeSong,
-  updatePlaylist,
-} from "../services/playlistService.js";
+import { deletePlaylist, getPlaylistById, removeSong, updatePlaylist, } from "../services/playlistService.js";
 
 function PlaylistDetails() {
   const { id } = useParams();
@@ -80,7 +75,7 @@ function PlaylistDetails() {
   if (message && !playlist) {
     return (
       <div>
-        <p>{message}</p>
+        <p className="message">{message}</p>
         <Link to="/playlists">Back to Playlists</Link>
       </div>
     );
@@ -119,7 +114,7 @@ function PlaylistDetails() {
         Delete Playlist
       </button>
 
-      {message && <p>{message}</p>}
+      {message && <p className="message">{message}</p>}
 
       <h2>Songs</h2>
 
@@ -127,7 +122,7 @@ function PlaylistDetails() {
         <p>This playlist does not have any songs yet.</p>
       ) : (
         playlist.songs.map((song, index) => (
-          <div key={song._id || index}>
+          <div className="song-card" key={song._id || index}>
             {song.artwork && (
               <img
                 src={song.artwork}
@@ -135,16 +130,18 @@ function PlaylistDetails() {
               />
             )}
 
-            <h3>{song.title}</h3>
-            <p>{song.artist}</p>
-            <p>{song.album}</p>
+            <div className="song-info">
+              <h3>{song.title}</h3>
+              <p>{song.artist}</p>
+              <p>{song.album}</p>
 
-            <button
-              type="button"
-              onClick={() => handleRemoveSong(index)}
-            >
-              Remove Song
-            </button>
+              <button
+                type="button"
+                onClick={() => handleRemoveSong(index)}
+              >
+                Remove Song
+              </button>
+            </div>
           </div>
         ))
       )}

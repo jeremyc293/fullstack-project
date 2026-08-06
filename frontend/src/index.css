@@ -6,10 +6,16 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
+  color: #222;
+}
+
+a {
+  color: #5b3cc4;
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -28,6 +34,7 @@ nav h2 {
 
 nav div {
   display: flex;
+  align-items: center;
   gap: 16px;
 }
 
@@ -40,28 +47,8 @@ nav a:hover {
   text-decoration: underline;
 }
 
-main {
-  padding: 24px;
-}
-
-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-
-main > div > div {
-  margin-top: 20px;
-}
-
-select {
-  width: 100%;
-  max-width: 400px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
 nav button {
+  margin-top: 0;
   padding: 0;
   border: none;
   background: none;
@@ -70,5 +57,99 @@ nav button {
 }
 
 nav button:hover {
+  background: none;
   text-decoration: underline;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+form {
+  max-width: 450px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+form h2 {
+  margin-top: 0;
+}
+
+form div {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 16px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #5b3cc4;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #472da0;
+}
+
+.playlist-card,
+.song-card {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.playlist-card h2,
+.song-card h2,
+.song-card h3 {
+  margin-top: 0;
+}
+
+.song-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.song-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.song-info {
+  flex: 1;
+}
+
+.message {
+  margin: 16px 0;
+  padding: 12px;
+  background-color: white;
+  border-left: 4px solid #5b3cc4;
 }

@@ -135,6 +135,18 @@ router.post("/:id/songs", authMiddleware, async (req, res, next) => {
       });
     }
 
+    const songAlreadyExists = playlist.songs.some(
+      (song) =>
+        song.title === req.body.title &&
+        song.artist === req.body.artist
+    );
+
+    if (songAlreadyExists) {
+      return res.status(400).json({
+        message: "This song is already in the playlist.",
+      });
+    }
+
     playlist.songs.push(req.body);
 
     await playlist.save();

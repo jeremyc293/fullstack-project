@@ -22,6 +22,8 @@ function SearchMusic() {
         if (data.length > 0) {
           setPlaylistId(data[0]._id);
         }
+      } else {
+        setMessage(data.message);
       }
     }
 
@@ -98,22 +100,27 @@ function SearchMusic() {
         <button type="submit">Search</button>
       </form>
 
-      {message && <p>{message}</p>}
+      {message && <p className="message">{message}</p>}
 
       {songs.map((song) => (
-        <div key={song.trackId}>
+        <div className="song-card" key={song.trackId}>
           <img
             src={song.artworkUrl100}
             alt={`${song.trackName} album cover`}
           />
 
-          <h2>{song.trackName}</h2>
-          <p>{song.artistName}</p>
-          <p>{song.collectionName}</p>
+          <div className="song-info">
+            <h2>{song.trackName}</h2>
+            <p>{song.artistName}</p>
+            <p>{song.collectionName}</p>
 
-          <button type="button" onClick={() => handleAddSong(song)}>
-            Add to Playlist
-          </button>
+            <button
+              type="button"
+              onClick={() => handleAddSong(song)}
+            >
+              Add to Playlist
+            </button>
+          </div>
         </div>
       ))}
     </div>

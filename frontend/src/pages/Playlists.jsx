@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  createPlaylist,
-  getPlaylists,
-} from "../services/playlistService.js";
+import { createPlaylist,getPlaylists, } from "../services/playlistService.js";
 
 function Playlists() {
   const [playlists, setPlaylists] = useState([]);
@@ -75,7 +72,7 @@ function Playlists() {
       )}
 
       {playlists.map((playlist) => (
-        <div key={playlist._id}>
+        <div className="playlist-card" key={playlist._id}>
           <h2>{playlist.name}</h2>
           <p>{playlist.description}</p>
           <p>{playlist.songs.length} songs</p>
