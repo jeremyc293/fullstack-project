@@ -60,3 +60,15 @@ select {
   padding: 10px;
   margin-bottom: 20px;
 }
+
+nav button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+}
+
+nav button:hover {
+  text-decoration: underline;
+}
