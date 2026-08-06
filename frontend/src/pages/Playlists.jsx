@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { createPlaylist,getPlaylists, } from "../services/playlistService.js";
+import {
+  createPlaylist,
+  getPlaylists,
+} from "../services/playlistService.js";
 
 function Playlists() {
   const [playlists, setPlaylists] = useState([]);
@@ -34,7 +37,7 @@ function Playlists() {
       setPlaylists([data.playlist, ...playlists]);
       setName("");
       setDescription("");
-      setMessage("");
+      setMessage("Playlist created successfully.");
     } else {
       setMessage(data.message);
     }
@@ -42,7 +45,16 @@ function Playlists() {
 
   return (
     <div>
-      <h1>My Playlists</h1>
+      <div className="page-heading">
+        <div>
+          <h1>My Playlists</h1>
+          <p>Create and organize your favorite music.</p>
+        </div>
+
+        <Link className="search-link" to="/search">
+          Search Music
+        </Link>
+      </div>
 
       <form onSubmit={handleSubmit}>
         <h2>Create Playlist</h2>
@@ -52,6 +64,7 @@ function Playlists() {
           type="text"
           value={name}
           onChange={(event) => setName(event.target.value)}
+          placeholder="Example: Workout Mix"
           required
         />
 
@@ -60,28 +73,48 @@ function Playlists() {
           type="text"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
+          placeholder="Describe your playlist"
         />
 
         <button type="submit">Create Playlist</button>
       </form>
 
-      {message && <p>{message}</p>}
+      {message && <p className="message">{message}</p>}
 
       {playlists.length === 0 && !message && (
-        <p>You do not have any playlists yet.</p>
+        <div className="empty-state">
+          <h2>No playlists yet</h2>
+          <p>Create your first playlist using the form above.</p>
+        </div>
       )}
 
-      {playlists.map((playlist) => (
-        <div className="playlist-card" key={playlist._id}>
-          <h2>{playlist.name}</h2>
-          <p>{playlist.description}</p>
-          <p>{playlist.songs.length} songs</p>
+      <div className="playlist-grid">
+        {playlists.map((playlist) => (
+          <div className="playlist-card" key={playlist._id}>
+            <div className="playlist-icon">♫</div>
 
-          <Link to={`/playlists/${playlist._id}`}>
-            View Playlist
-          </Link>
-        </div>
-      ))}
+            <div className="playlist-card-content">
+              <h2>{playlist.name}</h2>
+
+              <p>
+                {playlist.description || "No description provided."}
+              </p>
+
+              <span className="song-count">
+                {playlist.songs.length}{" "}
+                {playlist.songs.length === 1 ? "song" : "songs"}
+              </span>
+            </div>
+
+            <Link
+              className="view-playlist-link"
+              to={`/playlists/${playlist._id}`}
+            >
+              View Playlist
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
