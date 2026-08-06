@@ -11,6 +11,12 @@ function Playlists() {
   const [description, setDescription] = useState("");
   const [message, setMessage] = useState("");
 
+  const totalPlaylists = playlists.length;
+
+  const totalSongs = playlists.reduce((total, playlist) => {
+    return total + playlist.songs.length;
+  }, 0);
+
   useEffect(() => {
     loadPlaylists();
   }, []);
@@ -54,6 +60,18 @@ function Playlists() {
         <Link className="search-link" to="/search">
           Search Music
         </Link>
+      </div>
+
+      <div className="stats">
+        <div>
+          <h3>{totalPlaylists}</h3>
+          <p>Total Playlists</p>
+        </div>
+
+        <div>
+          <h3>{totalSongs}</h3>
+          <p>Total Songs</p>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit}>

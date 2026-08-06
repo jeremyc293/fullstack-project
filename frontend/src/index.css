@@ -211,3 +211,28 @@ button:hover {
 .view-playlist-link {
   margin-top: 16px;
 }
+
+.stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stats div {
+  min-width: 150px;
+  padding: 18px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.stats h3 {
+  margin: 0;
+  color: #5b3cc4;
+  font-size: 28px;
+}
+
+.stats p {
+  margin: 6px 0 0;
+  color: #666;
+}
