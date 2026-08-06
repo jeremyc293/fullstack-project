@@ -148,4 +148,31 @@ router.post("/:id/songs", authMiddleware, async (req, res, next) => {
   }
 });
 
+// Remove Song from Playlist
+router.delete("/:playlistId/songs/:songIndex", authMiddleware, async (req, res, next) => {
+  try {
+    const playlist = await Playlist.findOne({
+      _id: req.params.playlistId,
+      user: req.user.id,
+    });
+
+    if (!playlist) {
+      return res.status(404).json({
+        message: "Playlist not found.",
+      });
+    }
+
+    playlist.songs.splice(req.params.songIndex, 1);
+
+    await playlist.save();
+
+    res.status(200).json({
+      message: "Song removed successfully.",
+      playlist,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;

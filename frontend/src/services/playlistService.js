@@ -59,3 +59,19 @@ export async function addSongToPlaylist(playlistId, song) {
 
   return response.json();
 }
+
+export async function removeSong(playlistId, songIndex) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(
+    `${BASE_URL}/${playlistId}/songs/${songIndex}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.json();
+}
