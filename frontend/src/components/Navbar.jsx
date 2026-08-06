@@ -11,11 +11,11 @@ function Navbar() {
 
   return (
     <nav>
-      <h2>PlaylistHub</h2>
+      <h2>
+        <Link to="/">PlaylistHub</Link>
+      </h2>
 
       <div>
-        <Link to="/">Home</Link>
-
         {token ? (
           <>
             <Link to="/playlists">My Playlists</Link>
