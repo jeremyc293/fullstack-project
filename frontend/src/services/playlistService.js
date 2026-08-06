@@ -75,3 +75,31 @@ export async function removeSong(playlistId, songIndex) {
 
   return response.json();
 }
+
+export async function updatePlaylist(id, playlist) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(playlist),
+  });
+
+  return response.json();
+}
+
+export async function deletePlaylist(id) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.json();
+}

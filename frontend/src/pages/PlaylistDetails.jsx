@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { getPlaylistById, removeSong, } from "../services/playlistService.js";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  deletePlaylist,
+  getPlaylistById,
+  removeSong,
+  updatePlaylist,
+} from "../services/playlistService.js";
 
 function PlaylistDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [playlist, setPlaylist] = useState(null);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -14,6 +22,8 @@ function PlaylistDetails() {
 
       if (data._id) {
         setPlaylist(data);
+        setName(data.name);
+        setDescription(data.description);
       } else {
         setMessage(data.message);
       }
@@ -21,6 +31,40 @@ function PlaylistDetails() {
 
     loadPlaylist();
   }, [id]);
+
+  async function handleUpdate(event) {
+    event.preventDefault();
+
+    const data = await updatePlaylist(id, {
+      name,
+      description,
+    });
+
+    if (data.playlist) {
+      setPlaylist(data.playlist);
+      setMessage(data.message);
+    } else {
+      setMessage(data.message);
+    }
+  }
+
+  async function handleDelete() {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this playlist?"
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    const data = await deletePlaylist(id);
+
+    if (data.message === "Playlist deleted successfully.") {
+      navigate("/playlists");
+    } else {
+      setMessage(data.message);
+    }
+  }
 
   async function handleRemoveSong(index) {
     const data = await removeSong(id, index);
@@ -50,7 +94,30 @@ function PlaylistDetails() {
     <div>
       <h1>{playlist.name}</h1>
 
-      <p>{playlist.description}</p>
+      <form onSubmit={handleUpdate}>
+        <h2>Edit Playlist</h2>
+
+        <label>Playlist Name</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          required
+        />
+
+        <label>Description</label>
+        <input
+          type="text"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
+
+        <button type="submit">Save Changes</button>
+      </form>
+
+      <button type="button" onClick={handleDelete}>
+        Delete Playlist
+      </button>
 
       {message && <p>{message}</p>}
 
