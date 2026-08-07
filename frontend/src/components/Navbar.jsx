@@ -1,8 +1,23 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("darkMode") === "true"
+  );
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
 
   function handleLogout() {
     localStorage.removeItem("token");
@@ -31,6 +46,13 @@ function Navbar() {
             <Link to="/register">Register</Link>
           </>
         )}
+
+        <button
+          type="button"
+          onClick={() => setDarkMode(!darkMode)}
+        >
+          {darkMode ? "Light Mode" : "Dark Mode"}
+        </button>
       </div>
     </nav>
   );

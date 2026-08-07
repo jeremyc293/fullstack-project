@@ -360,3 +360,46 @@ audio {
     max-width: 100%;
   }
 }
+
+.dark {
+  background-color: #181818;
+  color: #f4f4f4;
+}
+
+.dark main {
+  color: #f4f4f4;
+}
+
+.dark form,
+.dark .playlist-card,
+.dark .song-card,
+.dark .feature-card,
+.dark .stats div,
+.dark .tech-list span,
+.dark .message,
+.dark .empty-state {
+  background-color: #282828;
+  color: white;
+  border-color: #444;
+}
+
+.dark input,
+.dark select {
+  background-color: #333;
+  color: white;
+  border-color: #555;
+}
+
+.dark p {
+  color: #ddd;
+}
+
+.dark .home > p,
+.dark .stats p {
+  color: #bbb;
+}
+
+.dark .playlist-icon {
+  background-color: #40336b;
+  color: white;
+}
