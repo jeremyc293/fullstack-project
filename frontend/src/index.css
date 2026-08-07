@@ -131,8 +131,7 @@ button:hover {
   margin-bottom: 25px;
 }
 
-.search-link,
-.view-playlist-link {
+.search-link {
   display: inline-block;
   padding: 10px 16px;
   background: #5b3cc4;
@@ -141,8 +140,7 @@ button:hover {
   border-radius: 4px;
 }
 
-.search-link:hover,
-.view-playlist-link:hover {
+.search-link:hover {
   background: #472da0;
 }
 
@@ -182,6 +180,20 @@ button:hover {
   font-size: 28px;
 }
 
+.view-playlist-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 16px;
+  background: #5b3cc4;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.view-playlist-link:hover {
+  background: #472da0;
+}
+
 .song-card {
   display: flex;
   gap: 16px;
@@ -206,10 +218,6 @@ button:hover {
   background: white;
   border: 1px dashed #bbb;
   border-radius: 8px;
-}
-
-.view-playlist-link {
-  margin-top: 16px;
 }
 
 .stats {
@@ -242,4 +250,113 @@ audio {
   width: 100%;
   max-width: 350px;
   margin: 12px 0;
+}
+
+.home {
+  text-align: center;
+}
+
+.home > p {
+  margin-bottom: 25px;
+  font-size: 18px;
+  color: #666;
+}
+
+.home-button {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #5b3cc4;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.home-button:hover {
+  background: #472da0;
+}
+
+.feature-card {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px 30px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.home-list {
+  margin: 0;
+  text-align: left;
+}
+
+.tech-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tech-list span {
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  nav div {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .page-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .playlist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    flex-direction: column;
+  }
+
+  .stats div {
+    width: 100%;
+  }
+
+  .song-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .song-card img {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .feature-card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .tech-list {
+    justify-content: center;
+  }
+
+  form {
+    max-width: 100%;
+  }
 }

@@ -1,34 +1,49 @@
+import { Link } from "react-router-dom";
+
 function Home() {
+  const token = localStorage.getItem("token");
+
   return (
-    <div>
+    <div className="home">
       <h1>Welcome to PlaylistHub</h1>
 
       <p>
-        PlaylistHub is a simple music playlist application built with the
-        MERN stack.
+        Create playlists, search for music, and save your favorite songs.
       </p>
 
-      <h2>What You Can Do</h2>
+      {token ? (
+        <Link className="home-button" to="/playlists">
+          View My Playlists
+        </Link>
+      ) : (
+        <Link className="home-button" to="/register">
+          Get Started
+        </Link>
+      )}
 
-      <ul>
-        <li>Create your own playlists</li>
-        <li>Edit playlist information</li>
-        <li>Delete playlists</li>
-        <li>Search millions of songs using the iTunes API</li>
-        <li>Add songs to your playlists</li>
-        <li>Remove songs whenever you want</li>
-      </ul>
+      <h2>Features</h2>
+
+      <div className="feature-card">
+        <ul className="home-list">
+          <li>Create, edit, and delete playlists</li>
+          <li>Search for songs and artists</li>
+          <li>Listen to 30-second song previews</li>
+          <li>Add and remove songs from playlists</li>
+        </ul>
+      </div>
 
       <h2>Technologies Used</h2>
 
-      <ul>
-        <li>React</li>
-        <li>Node.js</li>
-        <li>Express</li>
-        <li>MongoDB</li>
-        <li>Mongoose</li>
-        <li>JWT Authentication</li>
-      </ul>
+      <div className="tech-list">
+        <span>JavaScript</span>
+        <span>React</span>
+        <span>Node.js</span>
+        <span>Express</span>
+        <span>MongoDB</span>
+        <span>Mongoose</span>
+        <span>JWT</span>
+        <span>iTunes API</span>
+      </div>
     </div>
   );
 }
