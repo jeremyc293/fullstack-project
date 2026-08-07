@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/api/playlists";
+const BASE_URL = `${import.meta.env.VITE_API_URL}/api/playlists`;
 
 export async function getPlaylists() {
   const token = localStorage.getItem("token");
