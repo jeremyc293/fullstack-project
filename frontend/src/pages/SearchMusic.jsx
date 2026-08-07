@@ -59,6 +59,7 @@ function SearchMusic() {
       artist: song.artistName,
       album: song.collectionName,
       artwork: song.artworkUrl100,
+      previewUrl: song.previewUrl,
     };
 
     const data = await addSongToPlaylist(playlistId, songData);
@@ -111,8 +112,16 @@ function SearchMusic() {
 
           <div className="song-info">
             <h2>{song.trackName}</h2>
+
             <p>{song.artistName}</p>
+
             <p>{song.collectionName}</p>
+
+            {song.previewUrl && (
+              <audio controls src={song.previewUrl}>
+                Your browser does not support audio playback.
+              </audio>
+            )}
 
             <button
               type="button"

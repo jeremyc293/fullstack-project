@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { deletePlaylist, getPlaylistById, removeSong, updatePlaylist, } from "../services/playlistService.js";
+import {
+  deletePlaylist,
+  getPlaylistById,
+  removeSong,
+  updatePlaylist,
+} from "../services/playlistService.js";
 
 function PlaylistDetails() {
   const { id } = useParams();
@@ -93,6 +98,7 @@ function PlaylistDetails() {
         <h2>Edit Playlist</h2>
 
         <label>Playlist Name</label>
+
         <input
           type="text"
           value={name}
@@ -101,6 +107,7 @@ function PlaylistDetails() {
         />
 
         <label>Description</label>
+
         <input
           type="text"
           value={description}
@@ -132,8 +139,16 @@ function PlaylistDetails() {
 
             <div className="song-info">
               <h3>{song.title}</h3>
+
               <p>{song.artist}</p>
+
               <p>{song.album}</p>
+
+              {song.previewUrl && (
+                <audio controls src={song.previewUrl}>
+                  Your browser does not support audio playback.
+                </audio>
+              )}
 
               <button
                 type="button"

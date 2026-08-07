@@ -18,6 +18,10 @@ const songSchema = new mongoose.Schema({
   artwork: {
     type: String,
   },
+
+  previewUrl: {
+    type: String,
+  },
 });
 
 const playlistSchema = new mongoose.Schema(
