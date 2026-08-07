@@ -26,6 +26,7 @@ PlaylistHub is a full-stack MERN application that allows users to create and man
 - View total playlists and songs
 - Responsive design for mobile devices
 - Logout functionality
+- Dark Mode
 
 ## Technologies Used
 
